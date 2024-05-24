@@ -10,3 +10,5 @@ VALUES
 	('make a database', 'true'),
 	('make a table in the database', 'true'),
 	('write code for the server', 'false');
+
+    SELECT * FROM "todo"

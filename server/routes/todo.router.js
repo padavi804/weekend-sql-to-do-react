@@ -44,7 +44,7 @@ router.delete('/:id', (req, res) => {
     let idToDelete = req.params.id
 
     console.log('typeof idToDelete', typeof idToDelete);
-  
+
     let queryText = `DELETE FROM "songs" WHERE id = $1;`;
 
     // send it to the database
