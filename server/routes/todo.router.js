@@ -43,10 +43,10 @@ router.put('/:id', (req, res) => {
     let complete = req.body.complete;
 
     let queryText;
-    if(complete === true) {
+    if (complete === true) {
         complete = false;
         queryText = 'UPDATE "todo" SET transfer=false WHERE id=$1;';
-    }else if(complete === false) {
+    } else if (complete === false) {
         queryText = 'UPDATE "todo" SET transfer=true WHERE id=$1;';
         complete = true;
         res.sendStatus(400);
@@ -55,15 +55,15 @@ router.put('/:id', (req, res) => {
     console.log('transfer after if:', complete);
 
     pool.query(queryText, [idToupdate])
-    .then(dbResult => {
-        console.log(dbResult);
-        res.sendStatus(200);
-        
-    })
-    .catch(dbError => {
-        console.log(dbError);
-        res.sendStatus(500);
-    })
+        .then(dbResult => {
+            console.log(dbResult);
+            res.sendStatus(200);
+
+        })
+        .catch(dbError => {
+            console.log(dbError);
+            res.sendStatus(500);
+        })
 });
 // DELETE
 router.delete('/:id', (req, res) => {
