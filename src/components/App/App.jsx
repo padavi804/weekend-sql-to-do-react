@@ -4,9 +4,9 @@ import axios from 'axios';
 
 function App() {
 
-let [todoNote, setTodoNote] = useState ('');
-let [todoComplete, setTodoComplete] = useState('');
-let [todoArray, setTodoArray] = useState([]);
+  let [todoNote, setTodoNote] = useState('');
+  let [todoComplete, setTodoComplete] = useState('');
+  let [todoArray, setTodoArray] = useState([]);
 
   const fetchList = () => {
     axios({
@@ -17,11 +17,33 @@ let [todoArray, setTodoArray] = useState([]);
         console.log(response.data);
         setTodoArray(response.data);
       })
-      .catch((error) =>{
+      .catch((error) => {
         console.log('error fetching list', error);
       });
   }
   useEffect(fetchList, []);
+
+  const addTodo = (event) => {
+    event.preventDefault();
+
+    axios({
+      method: 'POST',
+      URL: '/api/todo',
+      data: {
+        note: todoNote,
+        complete: todoComplete
+      }
+    })
+      .then((response) => {
+        console.log('successful post', response);
+        fetchList();
+        setTodoNote('');
+        setTodoComplete('');
+      })
+      .catch((error) => {
+        console.log('post failed', error)
+      })
+  };
 
   return (
     <div>
@@ -29,16 +51,16 @@ let [todoArray, setTodoArray] = useState([]);
 
 
       <section className="new-task">
-        <form>
-        <input id="name-input" placeholder="New Task"/>
-        <input type="checkbox" id="complete" />
-        <button type="submit">Add to list</button>
+        <form onSubmit={addTodo}>
+          <input id="name-input" placeholder="New Task" />
+          <input id="complete-input" placeholder="Complete?"/>
+          <button type="submit">Add to list</button>
         </form>
       </section>
 
       <h2>Current List</h2>
       <ul>
-        {todoArray.map((todo) => { return(<li key={todo.note}>{todo.note} {todo.complete}</li>)})}
+        {todoArray.map((todo) => { return (<li key={todo.note}>{todo.note} {todo.complete}</li>) })}
       </ul>
     </div>
   );
