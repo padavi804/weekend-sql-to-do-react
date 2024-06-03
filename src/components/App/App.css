@@ -2,6 +2,9 @@
   text-align: center;
 }
 
+header {
+  text-align: center;
+}
 .App-header {
   background-color: #222;
   height: 70px;
@@ -22,7 +25,7 @@
   to { transform: rotate(360deg); }
 }
 
-.header-main {
+ul {
   background-color: #fdfd96;
 }
 

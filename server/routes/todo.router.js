@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
     let queryText = 'SELECT * FROM "todo";';
     pool.query(queryText)
         .then((dbResult) => {
+            console.log(`Got stuff back from the database`, dbResult);
             let songs = dbResult.rows;
             res.send(songs);
         })
