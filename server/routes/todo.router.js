@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
     pool.query(queryText)
         .then((dbResult) => {
             console.log(`Got stuff back from the database`, dbResult);
-            let songs = dbResult.rows;
-            res.send(songs);
+            let todo = dbResult.rows;
+            res.send(todo);
         })
         .catch((dbError) => {
             console.log('dbError:', dbError);
@@ -75,7 +75,7 @@ router.delete('/:id', (req, res) => {
 
     console.log('typeof idToDelete', typeof idToDelete);
 
-    let queryText = `DELETE FROM "songs" WHERE id = $1;`;
+    let queryText = `DELETE FROM "todo" WHERE id = $1;`;
 
     // send it to the database
     pool.query(queryText, [idToDelete])

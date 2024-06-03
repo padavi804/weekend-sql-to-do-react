@@ -25,11 +25,11 @@ function App() {
 
   const addTodo = (event) => {
     event.preventDefault();
-    console.log('The new task ${todoNote} is being added')
+    console.log(`The new task ${todoNote} is being added`)
     
     axios({
       method: 'POST',
-      URL: '/api/todo',
+      url: '/api/todo',
       data: {
         note: todoNote,
         complete: todoComplete
@@ -53,8 +53,8 @@ function App() {
 
       <section className="new-task">
         <form onSubmit={addTodo}>
-          <input id="name-input" placeholder="New Task" />
-          <input id="complete-input" placeholder="Complete?"/>
+          <input id="name-input" placeholder="New Task" onChange={(evt) => setTodoNote(evt.target.value)} value={todoNote}/>
+          <input id="complete-input" placeholder="Complete?" onChange={(evt) => setTodoComplete(evt.target.value)} value={todoComplete}/>
           <button type="submit">Add to list</button>
         </form>
       </section>
