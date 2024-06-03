@@ -4,6 +4,7 @@ const pool = require('../modules/pool.js');
 
 // GET
 router.get('/', (req, res) => {
+    console.log('in GET request');
     let queryText = 'SELECT * FROM "todo";';
     pool.query(queryText)
         .then((dbResult) => {
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
 });
 // POST
 router.post('/', (req, res) => {
-    console.log('req.body', req.body);
+    console.log('POST req.body', req.body);
     let newTodo = req.body;
     let note = newTodo.note;
     let complete = newTodo.complete;

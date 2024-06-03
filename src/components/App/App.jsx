@@ -25,7 +25,8 @@ function App() {
 
   const addTodo = (event) => {
     event.preventDefault();
-
+    console.log('The new task ${todoNote} is being added')
+    
     axios({
       method: 'POST',
       URL: '/api/todo',

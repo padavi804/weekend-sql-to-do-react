@@ -11,4 +11,4 @@ VALUES
 	('make a table in the database', 'true'),
 	('write code for the server', 'false');
 
-    SELECT * FROM "todo"
+    SELECT * FROM "todo";
