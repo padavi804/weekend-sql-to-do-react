@@ -91,7 +91,7 @@ function App() {
 
       <h2>Current List</h2>
       <ul>
-        {todoArray.map((todo) => { return (<li key={todo.note} className={todo.complete ? 'true' : 'false'}>{todo.note} {todo.complete} <button onClick={() => toggleComplete(todo.id)}> Complete </button> <button onClick={() => deleteTodo(todo.id)}>Delete</button></li>); })}
+        {todoArray.map((todo) => { return (<li key={todo.note} className={todo.complete ? 'true' : 'false'}>{todo.note} {todo.complete} <button className="doneButton" onClick={() => toggleComplete(todo.id)}> Complete </button> <button className="deleteButton" onClick={() => deleteTodo(todo.id)}>Delete</button></li>); })}
       </ul>
     </div>
   );

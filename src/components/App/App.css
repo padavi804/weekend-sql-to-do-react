@@ -27,6 +27,8 @@ header {
 
 ul {
   background-color: #fdfd96;
+  text-decoration-line: underline;
+  text-decoration-color: #020269;
 }
 
 .true {
