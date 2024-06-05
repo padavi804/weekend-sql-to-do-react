@@ -26,7 +26,7 @@ function App() {
   const addTodo = (event) => {
     event.preventDefault();
     console.log(`The new task ${todoNote} is being added`)
-    
+
     axios({
       method: 'POST',
       url: '/api/todo',
@@ -49,15 +49,31 @@ function App() {
   const deleteTodo = (id) => {
     axios({
       method: 'DELETE',
-      url:`/api/todo/${id}`,
+      url: `/api/todo/${id}`
     })
-    .then((response) => {
-      console.log('delete task worked', response)
-      fetchList();
+      .then((response) => {
+        console.log('delete task worked', response)
+        fetchList();
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  const toggleComplete = (id) => {
+    console.log('completely toggling completeness', id);
+
+    axios({
+      method: 'PUT',
+      url: `/api/todo/toggle/${id}`
     })
-    .catch(function (error) {
-      console.log(error)
-    })
+      .then((response) => {
+        console.log('complete toggle successful', response);
+        fetchList();
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   return (
@@ -67,15 +83,15 @@ function App() {
 
       <section className="new-task">
         <form onSubmit={addTodo}>
-          <input id="name-input" placeholder="New Task" onChange={(evt) => setTodoNote(evt.target.value)} value={todoNote}/>
-          <input id="complete-input" placeholder="Complete?" onChange={(evt) => setTodoComplete(evt.target.value)} value={todoComplete}/>
+          <input id="name-input" placeholder="New Task" onChange={(evt) => setTodoNote(evt.target.value)} value={todoNote} />
+          <input id="complete-input" placeholder="Complete?" onChange={(evt) => setTodoComplete(evt.target.value)} value={todoComplete} />
           <button type="submit">Add to list</button>
         </form>
       </section>
 
       <h2>Current List</h2>
       <ul>
-        {todoArray.map((todo) => { return (<li key={todo.note} className = {todo.complete ? 'complete' : 'incomplete' }>{todo.note} is {todo.complete} <button onClick={() => todoComplete(todo.id)}> Complete </button> <button onClick={() => deleteTodo(todo.id)}>Delete</button></li>); })}
+        {todoArray.map((todo) => { return (<li key={todo.note} className={todo.complete ? 'true' : 'false'}>{todo.note} is {todo.complete} <button onClick={() => toggleComplete(todo.id)}> Complete </button> <button onClick={() => deleteTodo(todo.id)}>Delete</button></li>); })}
       </ul>
     </div>
   );
@@ -84,5 +100,5 @@ function App() {
 }
 
 export default App
-{/* // taskList.map((task_list) => { return (<li className = {task_list.complete ? "completed" : "notComplete"} key ={task_list.task}>{task_list.task} is {task_list.complete} */}
-{/* <button onClick={() => completeTask(task_list.id)}>{task_list.complete ? "Mark not completed" : "Mark completed"}</button> */}
+{/* // taskList.map((task_list) => { return (<li className = {task_list.complete ? "completed" : "notComplete"} key ={task_list.task}>{task_list.task} is {task_list.complete} */ }
+{/* <button onClick={() => completeTask(task_list.id)}>{task_list.complete ? "Mark not completed" : "Mark completed"}</button> */ }
