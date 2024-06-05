@@ -46,6 +46,20 @@ function App() {
       })
   };
 
+  const deleteTodo = (id) => {
+    axios({
+      method: 'DELETE',
+      url:`/api/todo/${id}`,
+    })
+    .then((response) => {
+      console.log('delete task worked', response)
+      fetchList();
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
+
   return (
     <div>
       <h1>TO DO APP</h1>
@@ -61,7 +75,7 @@ function App() {
 
       <h2>Current List</h2>
       <ul>
-        {todoArray.map((todo) => { return (<li key={todo.note}>{todo.note} {todo.complete}</li>) })}
+        {todoArray.map((todo) => { return (<li key={todo.note} className = {todo.complete ? 'complete' : 'incomplete' }>{todo.note} is {todo.complete} <button onClick={() => todoComplete(todo.id)}> Complete </button> <button onClick={() => deleteTodo(todo.id)}>Delete</button></li>); })}
       </ul>
     </div>
   );
@@ -70,3 +84,5 @@ function App() {
 }
 
 export default App
+{/* // taskList.map((task_list) => { return (<li className = {task_list.complete ? "completed" : "notComplete"} key ={task_list.task}>{task_list.task} is {task_list.complete} */}
+{/* <button onClick={() => completeTask(task_list.id)}>{task_list.complete ? "Mark not completed" : "Mark completed"}</button> */}
