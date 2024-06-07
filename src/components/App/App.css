@@ -1,12 +1,16 @@
 .App {
   text-align: center;
+  width: 500px;
+  margin: auto;
+  background-color: #fdfd96;
 }
 
 header {
   text-align: center;
+  
 }
 .App-header {
-  background-color: #222;
+  background-color: #fdfd96;
   height: 70px;
   padding: 20px;
   color: white;
@@ -33,4 +37,10 @@ ul {
 
 .true {
   text-decoration: line-through;
+}
+
+button {
+  border-radius:6px;
+  background-color: #020269;
+  color: white;
 }

@@ -85,7 +85,7 @@ function App() {
         <form onSubmit={addTodo}>
           <input id="name-input" placeholder="New Task" onChange={(evt) => setTodoNote(evt.target.value)} value={todoNote} />
           <input id="complete-input" placeholder="Complete?" onChange={(evt) => setTodoComplete(evt.target.value)} value={todoComplete} />
-          <button type="submit">Add to list</button>
+          <button className="submitButton" type="submit">Add to list</button>
         </form>
       </section>
 
