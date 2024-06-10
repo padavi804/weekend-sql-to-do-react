@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import Header from '../Header/Header'
 
 function App() {
 
@@ -78,7 +79,7 @@ function App() {
 
   return (
     <div>
-      <h1>TO DO APP</h1>
+      <Header />
 
 
       <section className="new-task">
@@ -88,11 +89,25 @@ function App() {
           <button className="submitButton" type="submit">Add to list</button>
         </form>
       </section>
-
+    
       <h2>Current List</h2>
-      <ul>
-        {todoArray.map((todo) => { return (<li key={todo.note} className={todo.complete ? 'true' : 'false'}>{todo.note} {todo.complete} <button className="doneButton" onClick={() => toggleComplete(todo.id)}> Complete </button> <button className="deleteButton" onClick={() => deleteTodo(todo.id)}>Delete</button></li>); })}
-      </ul>
+      <table>
+      <thead>
+            <tr>
+              <th className='noteTh'>Note</th>
+              <th className='completeTh'>Mark Complete</th>
+              <th className='deleteTh'>Remove</th>
+            </tr>
+          </thead>
+      <tbody>
+        {todoArray.map((todo) => { return (
+        <tr key={todo.note} className={todo.complete ? 'true' : 'false'}>
+          <td>{todo.note} {todo.complete} </td>
+          <td><button className="doneButton" onClick={() => toggleComplete(todo.id)}> Complete </button> </td>
+          <td><button className="deleteButton" onClick={() => deleteTodo(todo.id)}>Remove</button></td></tr>);
+        })}
+      </tbody>
+      </table>
     </div>
   );
 
