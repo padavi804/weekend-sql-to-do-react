@@ -41,10 +41,10 @@ VALUES	($1, $2);`
 router.put('/toggle/:id', (req, res) => {
     console.log(req.params);
     console.log(req.body);
-    let { id } = req.params;    
+    let { id } = req.params;
 
     const queryText = `UPDATE "todo" SET "complete" = NOT "complete" WHERE "id" = $1;`;
-   
+
 
     pool.query(queryText, [id])
         .then(dbResult => {
@@ -53,7 +53,7 @@ router.put('/toggle/:id', (req, res) => {
 
         })
         .catch(dbError => {
-            console.log(`Error making database query ${queryText}`,dbError);
+            console.log(`Error making database query ${queryText}`, dbError);
             res.sendStatus(500);
         })
 });
